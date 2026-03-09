@@ -118,6 +118,35 @@ Usually semiconductor diodes shows CTAT behaviour. If we consider constant curre
 
 <img width="668" height="249" alt="image" src="https://github.com/user-attachments/assets/8e4def12-19a7-4814-9a65-d4af6ec7d714" />
 
+## CTAT Voltage Generation With Single BJT.
+
+```
+*CTAT Voltage generation with single BJT
+.lib /home/vishalvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0          1.8
+I0      d        ctat_op    10u
+xpq1    0        0          ctat_op   sky130_fd_pr__pnp_05v5_W3p40L3p40   m=1
+.dc     temp    -40         125       5
+
+.control
+run
+plot v(ctat_op)
+plot deriv(v(ctat_op))
+.endc
+
+.end
+```
+
+<img width="696" height="536" alt="image" src="https://github.com/user-attachments/assets/82aee313-6838-4074-8713-18fec8455a92" />
+
+
+
+
+***Deriv Value CTAT***
+
+<img width="702" height="527" alt="image" src="https://github.com/user-attachments/assets/cb17530c-0796-4ddb-94f1-55a3fe7c7816" />
+
+
 
 
 
