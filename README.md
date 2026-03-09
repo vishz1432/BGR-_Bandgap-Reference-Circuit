@@ -28,3 +28,13 @@ The Bandgap Reference (BGR) is a circuit which provides a stable voltage output 
 
 - A Bangap reference which can be integrated in bulk CMOS, Bi-CMOS or Bipolar technologies without the use of external components.
 
+
+
+## Features Of BGR
+- Temp. independent voltage reference circuit widely used in Integrated Circuits
+- Produces constant voltage regardless of power supply variation, temp. Changes and circuit loading.
+- Output voltage of 1.2v (close to the band gap energy of silicon at 0 deg kelvin).
+- All applications starting from analog, digital, mixed mode, RF and system-on-chip (SoC).
+
+
+## Applications Of BGR
