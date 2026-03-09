@@ -102,3 +102,22 @@ Now we will share instructions for installing WSL2 on Winodws 10/11 and install 
 
 The operation principle of BGR circuits is to sum a voltage with negative temprature coefficient with another one exhibiting opposite temperature dependancies. Generally semiconductor diode behave as CTAT i.e. Complement to absolute temp. which means with increase in temp. the voltage across the diode will decrease. So we need to find a PTAT circuit which can cancel out the CTAT nature.
 
+
+<img width="749" height="455" alt="image" src="https://github.com/user-attachments/assets/87b9d8bf-0960-454c-87f5-d9e5b5ffe0fe" />
+
+### 2.1.1 CTAT Circuit Voltage Simulation 
+
+Usually semiconductor diodes shows CTAT behaviour. If we consider constant current is flowing through a forwrard biased diode, then with increase in temp. we can observe that the voltage across the diode is decreaseing. Generally, it is found that the slope of the V~Temp is -2mV/deg Centigarde.
+
+<img width="950" height="586" alt="image" src="https://github.com/user-attachments/assets/e75e53a8-988a-4e77-addf-d7c1b473e285" />
+
+
+
+***The slope value will be decrease in the rate of-2mV/deg Centigrade.***
+
+
+<img width="668" height="249" alt="image" src="https://github.com/user-attachments/assets/8e4def12-19a7-4814-9a65-d4af6ec7d714" />
+
+
+
+
