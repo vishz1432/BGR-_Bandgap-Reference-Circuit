@@ -169,6 +169,28 @@ plot deriv(v(ctat_op))
 <img width="592" height="436" alt="image" src="https://github.com/user-attachments/assets/eddba05d-69a9-4935-a458-67ab52c90a14" />
 
 
+### CTAT Voltage generation with different current source values.
+
+```
+*CTAT_ckt Voltage generation with different current source values
+.lib /home/vishalvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0          1.8
+I0      d        ctat_op    10u
+xpq1    0        0          ctat_op   sky130_fd_pr__pnp_05v5_W3p40L3p40   m=8
+.dc     temp    -40         125       5      I0    1u    10u      1u
+
+.control
+run
+plot v(ctat_op)
+.endc
+
+.end
+```
+
+<img width="703" height="533" alt="image" src="https://github.com/user-attachments/assets/18638d0f-9771-4cf1-bcfc-2e22c002af64" />
+
+
+
 
 
 
