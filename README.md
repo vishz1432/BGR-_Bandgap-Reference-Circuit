@@ -189,6 +189,9 @@ plot v(ctat_op)
 
 <img width="703" height="533" alt="image" src="https://github.com/user-attachments/assets/18638d0f-9771-4cf1-bcfc-2e22c002af64" />
 
+### PTAT Circuit Simulation 
+
+
 
 
 
