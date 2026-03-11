@@ -570,6 +570,161 @@ plot ptat_op
 <img width="702" height="538" alt="image" src="https://github.com/user-attachments/assets/1f9d5f0f-71cb-49c1-8dbe-735a75e44376" />
 
 
+### PTAT voltage generation across resistor
+
+
+<img width="849" height="588" alt="image" src="https://github.com/user-attachments/assets/5dd06bf9-aee9-42b3-9245-e926e40f118a" />
+
+```
+*Difference in resistor voltage is PTAT
+.lib /home/vishalvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0           1.8
+I0      d        ra1         10u
+xra1    ra1      na1         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra2    na1      na2         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra3    na2      na3         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xra4    na2      na3         d       sky130_fd_pr__res_high_po_1p41      w=1.41  l=7.8
+xpq1    0        0           na3     sky130_fd_pr__pnp_05v5_W3p40L3p40   m=8
+.dc     temp    -40          125              5
+
+.control
+run
+let  ptat_op = v(ra1)-v(na3)
+plot v(na3) v(ra1)
+plot ptat_op
+.endc
+
+.end
+```
+
+<img width="702" height="532" alt="image" src="https://github.com/user-attachments/assets/daf38e19-4154-4d05-bf46-b79973e334a8" />
+
+
+
+<img width="693" height="536" alt="image" src="https://github.com/user-attachments/assets/df4cc3c3-b832-40a7-a5f3-53f72a1031e9" />
+
+
+## 2.1.3 Resistance Tempco 
+
+
+We know that resistor also behaves as PTAT, i.e the voltage across the resistor also increases with increase in the temp. In our BGR the PTAT voltage we are getting is not only by the virtue of Vt(Thermal voltgae) but with the additional PTAT voltage of the resistance.
+
+
+### Resistor Temperature Coefficient (Tempco) Equations
+
+ ***Ohm’s Law***
+
+The resistance of a resistor is calculated using Ohm’s Law:
+
+$$
+R = \frac{V}{I}
+$$
+
+where
+
+- \(R\) = Resistance  
+- \(V\) = Voltage across the resistor  
+- \(I\) = Current through the resistor  
+
+---
+
+### Resistance as a Function of Temperature
+
+The resistance of a material varies with temperature according to:
+
+$$
+R(T) = R_0 \left(1 + \alpha (T - T_0)\right)
+$$
+
+where
+
+- \(R(T)\) = Resistance at temperature \(T\)  
+- \(R_0\) = Resistance at reference temperature \(T_0\)  
+- \(\alpha\) = Temperature coefficient of resistance  
+
+---
+
+### Temperature Coefficient of Resistance
+
+The temperature coefficient (Tempco) is defined as:
+
+$$
+\alpha = \frac{1}{R}\frac{dR}{dT}
+$$
+
+where
+
+- \(dR/dT\) = Rate of change of resistance with temperature  
+- \(R\) = Resistance at reference temperature  
+
+---
+
+### Approximate Tempco Calculation
+
+Using two temperature points from simulation:
+
+$$
+\alpha \approx \frac{R_2 - R_1}{R_1 (T_2 - T_1)}
+$$
+
+where
+
+- \(R_1\) = Resistance at temperature \(T_1\)  
+- \(R_2\) = Resistance at temperature \(T_2\)
+
+---
+
+### Resistance Extraction in Simulation
+
+In NGSPICE, resistance is calculated as:
+
+$$
+R = \frac{V(ra1)}{I_{vid}}
+$$
+
+where
+
+- \(V(ra1)\) = Voltage at node **ra1**  
+- \(I_{vid}\) = Current through voltage source **vid**
+
+---
+
+### Temperature Sweep
+
+The temperature is swept during simulation using:
+
+$$
+T = -40^\circ C \rightarrow 125^\circ C
+$$
+
+to observe how the resistance changes with temperature.
+
+---
+
+### Summary Equation
+
+The overall temperature dependence of resistance is given by:
+
+$$
+R(T) = R_0 \left(1 + \alpha (T - T_0)\right)
+$$
+
+This equation describes the **temperature coefficient behavior of resistors**, which is critical in precision analog circuits such as **bandgap references and temperature sensors**.
+
+
+
+
+<img width="701" height="537" alt="image" src="https://github.com/user-attachments/assets/b5e59e0c-217c-4f53-8f47-2b00722a186e" />
+
+
+From the above curve we can find that the Voltage across the resistnace is increasing with increase in temp., i.e. the PTAT nature.
+
+Now to find the temco. we have to find the change in resistance w.r.t temp. The tempco. can be found from the slope of the following curve.
+
+
+<img width="702" height="532" alt="image" src="https://github.com/user-attachments/assets/7772ab07-6282-47d2-bc42-28060a66c04e" />
+
+
 
 
 
