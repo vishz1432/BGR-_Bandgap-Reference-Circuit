@@ -417,6 +417,108 @@ V_{REF} = V_{BE} + k \cdot \Delta V_{BE}
 $$
 
 
+***In the above circuit same amount of current I is flowing in both the branches. So the node voltage A and B are going to be same V. Now in the B branch if we substract V1 from V, we get Vt independent of Is.***
+
+
+
+## PTAT Voltage Derivation
+
+The base-emitter voltage of a BJT is given by:
+
+$$
+V = V_t \ln\left(\frac{I}{I_S}\right)
+$$
+
+For a second transistor with emitter area ratio \(1:N\):
+
+$$
+V_1 = V_t \ln\left(\frac{I/N}{I_S}\right)
+$$
+
+---
+
+### Difference of Base-Emitter Voltages
+
+Subtracting the two voltages:
+
+$$
+V - V_1 = V_t \ln(N)
+$$
+
+This voltage difference is commonly denoted as:
+
+$$
+\Delta V_{BE} = V_t \ln(N)
+$$
+
+---
+
+### PTAT Relationship
+
+Since
+
+$$
+V_t = \frac{kT}{q}
+$$
+
+we get:
+
+$$
+\Delta V_{BE} = \frac{kT}{q} \ln(N)
+$$
+
+Here:
+
+- \(V_t\) is **Proportional To Absolute Temperature (PTAT)**
+- \(\ln(N)\) is a **constant**
+
+Therefore:
+
+$$
+\Delta V_{BE} \propto T
+$$
+
+---
+
+### Thermal Voltage
+
+The thermal voltage is defined as:
+
+$$
+V_t = \frac{kT}{q}
+$$
+
+where:
+
+- \(k\) = Boltzmann constant  
+- \(T\) = absolute temperature  
+- \(q\) = electron charge  
+
+---
+
+### Temperature Coefficient
+
+The temperature derivative of the thermal voltage is:
+
+$$
+\frac{dV_t}{dT} = \frac{k}{q}
+$$
+
+Numerically,
+
+$$
+\frac{k}{q} \approx 85 \, \mu V / ^\circ C
+$$
+
+---
+
+### Final PTAT Expression
+
+$$
+\Delta V_{BE} = V_t \ln(N)
+$$
+
+This voltage is **Proportional To Absolute Temperature (PTAT)** and is widely used in **bandgap reference circuits**.
 
 
 
