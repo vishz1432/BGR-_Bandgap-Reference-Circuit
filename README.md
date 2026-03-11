@@ -189,7 +189,235 @@ plot v(ctat_op)
 
 <img width="703" height="533" alt="image" src="https://github.com/user-attachments/assets/18638d0f-9771-4cf1-bcfc-2e22c002af64" />
 
-### PTAT Circuit Simulation 
+### 2.1.2 PTAT Circuit Simulation 
+
+## CTAT BJT Equations
+
+The collector current of a BJT diode-connected device is:
+
+$$
+I_D = I_S e^{\frac{V_D}{V_t}}
+$$
+
+Rearranging for the diode voltage:
+
+$$
+V_D = V_t \ln\left(\frac{I_0}{I_S}\right)
+$$
+
+The thermal voltage is defined as:
+
+$$
+V_t = \frac{kT}{q}
+$$
+
+The saturation current of the BJT is:
+
+$$
+I_S = A \mu k T n_i^2
+$$
+
+Carrier mobility temperature dependence:
+
+$$
+\mu \propto \mu_0 T^m
+$$
+
+where
+
+$$
+m = -\frac{3}{2}
+$$
+
+The intrinsic carrier concentration:
+
+$$
+n_i^2 \propto T^3 e^{\left(\frac{-E_g}{kT}\right)}
+$$
+
+Substituting the above relationships into the saturation current expression:
+
+$$
+I_S = A T^{(4+m)} e^{\left(\frac{-E_g}{kT}\right)}
+$$
+
+
+ 
+ From Diode current equation we can find that it has two parts, i.e.
+  - Vt (Thermal Voltage) which is directly proportional to the temp. (order ~ 1)
+  - Is (Reverse saturation current) which is directly proportional to the temp. (order ~ 2.5), as this Is term is in denominator so with increase in temp. the ln(Io/Is) decreases which is responsible for CTAT nature of the diode.
+
+
+So to get a PTAT Voltage generation circuit we have to find some way such that we can get the Vt separated from Is.
+
+To get Vt separated from Is we can approach in the following way
+
+<img width="364" height="331" alt="image" src="https://github.com/user-attachments/assets/25ab5c9f-b7e3-4ecb-a218-5558ad07f12c" />
+
+## PTAT Voltage Generation
+
+PTAT (Proportional To Absolute Temperature) voltage is widely used in **bandgap reference circuits**.  
+It is generated using two BJTs operating at the same current but having different emitter areas.
+
+---
+
+### BJT Collector Current Equation
+
+The collector current of a BJT is given by:
+
+$$
+I_C = I_S e^{\frac{V_{BE}}{V_T}}
+$$
+
+where:
+
+- $I_C$ = Collector current  
+- $I_S$ = Saturation current  
+- $V_{BE}$ = Base-emitter voltage  
+- $V_T$ = Thermal voltage  
+
+---
+
+### Thermal Voltage
+
+The thermal voltage is defined as:
+
+$$
+V_T = \frac{kT}{q}
+$$
+
+where:
+
+- $k$ = Boltzmann constant  
+- $T$ = Absolute temperature  
+- $q$ = Electron charge  
+
+At **300 K**,  
+
+$$
+V_T \approx 26 \, mV
+$$
+
+---
+
+### Base-Emitter Voltage
+
+Rearranging the BJT current equation:
+
+$$
+V_{BE} = V_T \ln\left(\frac{I_C}{I_S}\right)
+$$
+
+---
+
+### Two-Transistor Configuration
+
+For two BJTs operating at the **same current** but with **different emitter areas**:
+
+Emitter area ratio:
+
+$$
+1 : N
+$$
+
+Since saturation current is proportional to emitter area:
+
+$$
+I_{S2} = N \cdot I_{S1}
+$$
+
+---
+
+### Base-Emitter Voltages
+
+For transistor $Q_1$:
+
+$$
+V_{BE1} = V_T \ln\left(\frac{I}{I_{S1}}\right)
+$$
+
+For transistor $Q_2$:
+
+$$
+V_{BE2} = V_T \ln\left(\frac{I}{I_{S2}}\right)
+$$
+
+Substituting $I_{S2} = N I_{S1}$:
+
+$$
+V_{BE2} = V_T \ln\left(\frac{I}{N I_{S1}}\right)
+$$
+
+---
+
+### PTAT Voltage (ΔVBE)
+
+Taking the difference between the two base-emitter voltages:
+
+$$
+\Delta V_{BE} = V_{BE1} - V_{BE2}
+$$
+
+$$
+\Delta V_{BE} = V_T \ln(N)
+$$
+
+Substituting $V_T$:
+
+$$
+\Delta V_{BE} = \frac{kT}{q} \ln(N)
+$$
+
+Since temperature $T$ appears in the numerator, this voltage is **Proportional To Absolute Temperature (PTAT)**.
+
+---
+
+### PTAT Current
+
+If a resistor $R$ is connected across $\Delta V_{BE}$:
+
+$$
+I_{PTAT} = \frac{\Delta V_{BE}}{R}
+$$
+
+Substituting $\Delta V_{BE}$:
+
+$$
+I_{PTAT} = \frac{V_T \ln(N)}{R}
+$$
+
+or
+
+$$
+I_{PTAT} = \frac{kT}{qR} \ln(N)
+$$
+
+Thus the generated current is **PTAT current**.
+
+---
+
+### Summary
+
+The PTAT voltage generated is:
+
+$$
+\Delta V_{BE} = \frac{kT}{q} \ln(N)
+$$
+
+The PTAT current generated is:
+
+$$
+I_{PTAT} = \frac{kT}{qR} \ln(N)
+$$
+
+These PTAT quantities are combined with **CTAT voltage ($V_{BE}$)** in bandgap reference circuits to generate a **temperature-independent reference voltage**.
+
+$$
+V_{REF} = V_{BE} + k \cdot \Delta V_{BE}
+$$
+
+
+
 
 
 
