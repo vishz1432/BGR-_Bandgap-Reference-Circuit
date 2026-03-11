@@ -717,12 +717,16 @@ This equation describes the **temperature coefficient behavior of resistors**, w
 <img width="701" height="537" alt="image" src="https://github.com/user-attachments/assets/b5e59e0c-217c-4f53-8f47-2b00722a186e" />
 
 
+
 From the above curve we can find that the Voltage across the resistnace is increasing with increase in temp., i.e. the PTAT nature.
+
 
 Now to find the temco. we have to find the change in resistance w.r.t temp. The tempco. can be found from the slope of the following curve.
 
 
 <img width="702" height="532" alt="image" src="https://github.com/user-attachments/assets/7772ab07-6282-47d2-bc42-28060a66c04e" />
+
+
 
 
 
