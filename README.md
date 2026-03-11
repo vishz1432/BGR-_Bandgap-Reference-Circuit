@@ -191,7 +191,7 @@ plot v(ctat_op)
 
 ### 2.1.2 PTAT Circuit Simulation 
 
-## CTAT BJT Equations
+***CTAT BJT Equations***
 
 The collector current of a BJT diode-connected device is:
 
