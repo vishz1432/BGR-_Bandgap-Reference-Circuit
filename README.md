@@ -105,7 +105,7 @@ The operation principle of BGR circuits is to sum a voltage with negative tempra
 
 <img width="749" height="455" alt="image" src="https://github.com/user-attachments/assets/87b9d8bf-0960-454c-87f5-d9e5b5ffe0fe" />
 
-### 2.1.1 CTAT Circuit Voltage Simulation 
+## 2.1.1 CTAT Circuit Voltage Simulation 
 
 Usually semiconductor diodes shows CTAT behaviour. If we consider constant current is flowing through a forwrard biased diode, then with increase in temp. we can observe that the voltage across the diode is decreaseing. Generally, it is found that the slope of the V~Temp is -2mV/deg Centigarde.
 
@@ -189,7 +189,7 @@ plot v(ctat_op)
 
 <img width="703" height="533" alt="image" src="https://github.com/user-attachments/assets/18638d0f-9771-4cf1-bcfc-2e22c002af64" />
 
-### 2.1.2 PTAT Circuit Simulation 
+## 2.1.2 PTAT Circuit Simulation 
 
 ***CTAT BJT Equations***
 
@@ -254,7 +254,7 @@ To get Vt separated from Is we can approach in the following way
 
 <img width="364" height="331" alt="image" src="https://github.com/user-attachments/assets/25ab5c9f-b7e3-4ecb-a218-5558ad07f12c" />
 
-## PTAT Voltage Generation
+### PTAT Voltage Generation
 
 PTAT (Proportional To Absolute Temperature) voltage is widely used in **bandgap reference circuits**.  
 It is generated using two BJTs operating at the same current but having different emitter areas.
@@ -421,7 +421,7 @@ $$
 
 
 
-## PTAT Voltage Derivation
+### PTAT Voltage Derivation
 
 The base-emitter voltage of a BJT is given by:
 
@@ -520,6 +520,74 @@ $$
 
 This voltage is **Proportional To Absolute Temperature (PTAT)** and is widely used in **bandgap reference circuits**.
 
+### NOW
+
+```
+V= Combined Voltage across R1 and Q2 (CTAT in nature but less sloppy)
+V1= Voltage across Q2 (CTAT in nature but more sloppy)
+V-V1= Voltage across R1 (PTAT in nature)
+```
+
+
+
+From above we can see that the voltage V-V1 is PTAT in nature, but it's slope is very less as compared to the CTAT, so we have to increase the slope. In order to increase the slope we can use multiple BJTs as diode, so that current per individual diode will be less and it the slope of V-V1 will increase.
+
+
+
+<img width="604" height="505" alt="image" src="https://github.com/user-attachments/assets/9bf8aade-4736-4e28-b157-7cf44ce969b5" />
+
+### PTAT Voltage generation with ideal current source
+
+
+
+<img width="851" height="586" alt="image" src="https://github.com/user-attachments/assets/23a0ca2f-7290-40e4-9c93-c114110fda2c" />
+
+
+```
+.lib /home/vishalvlsi/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice ss
+vdd     d        0           1.8
+I0      d        ctat_op     10u
+I1      d        ctat_op1    10u
+xpq1    0        0           ctat_op    sky130_fd_pr__pnp_05v5_W3p40L3p40   m=1
+xpq2    0        0           ctat_op1   sky130_fd_pr__pnp_05v5_W3p40L3p40   m=8
+.dc     temp    -40          125              5
+
+.control
+run
+plot v(ctat_op) v(ctat_op1)
+let ptat_op = v(ctat_op)-v(ctat_op1)
+plot ptat_op
+.endc
+
+.end
+```
+
+
+<img width="697" height="537" alt="image" src="https://github.com/user-attachments/assets/00433c20-cb0d-4ad5-8d32-363bbc36dfbc" />
+
+
+
+<img width="702" height="538" alt="image" src="https://github.com/user-attachments/assets/1f9d5f0f-71cb-49c1-8dbe-735a75e44376" />
+
+
+
+
+
+
+
+## 2.2 Types Of BGR Circuit
+
+
+Architecture wise BGR can be designed in two ways.
+- By Using Self-biased current mirror.
+- By Using Operational-amplifier.
+
+
+Application wise BGR can be categorized as
+- High-PSRR and low-noise BGR.
+- Low-power BGR.
+- Low-voltage BGR.
+- Curvature compensated BGR
 
 
 
