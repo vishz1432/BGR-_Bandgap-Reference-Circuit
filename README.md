@@ -816,7 +816,7 @@ Application wise BGR can be categorized as
 - High-PSRR and low-noise BGR.
 - Low-power BGR.
 - Low-voltage BGR.
-- Curvature compensated BGR
+- Curvature compensated BGR.
 
 
 
