@@ -866,6 +866,52 @@ The reference circuit branch performs the addition of CTAT and PTAT volages and 
 <img width="137" height="386" alt="image" src="https://github.com/user-attachments/assets/19ccb3a5-54fc-4f5b-aa4f-916cae4e2019" />
 
 
+### Start-up circuit
+
+The start-up circuit is required to move out the self biased current mirror from degenerative bias point (zero current). The start-up circuit forecefully flows a slow amount of current through the self-biased current mirror when the current is 0 in the current mirror branches, as the current mirror is self biased this small current creats a disturbance and the current mirror auto biased to the desired current value.
+
+
+
+  <img width="521" height="434" alt="image" src="https://github.com/user-attachments/assets/c6ff982a-23a4-477c-90bb-254963ffbc64" />
+
+
+
+  ***Now Finally the BGR  Circuit***
+
+
+  ## Complete BGR Circuit
+
+
+
+
+  <img width="751" height="490" alt="image" src="https://github.com/user-attachments/assets/26885a62-a125-4ed0-8284-d58444dc5494" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
