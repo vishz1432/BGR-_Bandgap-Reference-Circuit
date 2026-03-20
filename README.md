@@ -805,7 +805,7 @@ plot v(ra1)/vid#branch
 
 
 
-## 2.2 Types Of BGR Circuit
+# 2.2 Types Of BGR Circuit
 
 
 Architecture wise BGR can be designed in two ways.
@@ -820,8 +820,50 @@ Application wise BGR can be categorized as
 - Curvature compensated BGR.
 
 
+**We are going to design our BGR circuit using Self-biased current mirror architecture.**
+
+## 2.2.1 Self-biased current mirror based BGR.
+----------------------------------------------
+
+The Self-biased current mirror based constitute of the following components.
+
+- CTAT voltage generation circuit.
+- PTAT voltage generation circuit.
+- Self-biased current mirror circuit.
+- Reference branch circuit.
+- Start-up circuit.
+
+***Now We are Using all the basic details for the components for the design .***
+
+### CTAT Voltage generation circuit.
+
+The CTAT Voltage generation circuit consist of a BJT connected as a diode, which shows CTAT nature as explained above.
+
+<img width="183" height="243" alt="image" src="https://github.com/user-attachments/assets/6e913281-f6e0-457f-a325-4793438a4d8f" />
 
 
+###  PTAT Voltage generation circuit
+
+The PTAT Voltgae generation circuit consist of N BJTs connected with a series resistance. The operation principle is explained above.
+
+<img width="393" height="399" alt="image" src="https://github.com/user-attachments/assets/9d240b72-50da-42f3-99ea-026db982cc43" />
+
+### Self-Biased Current Mirror Circuit
+
+The Self-biased current mirror is a type of current mirror which requires no external biasing. This current mirrors biases it self to the desired current value without any external current source reference.
+
+
+<img width="358" height="301" alt="image" src="https://github.com/user-attachments/assets/b738c91d-abb6-4710-b395-3057ef4da178" />
+
+
+### Reference Branch Circuit
+
+
+The reference circuit branch performs the addition of CTAT and PTAT volages and gives the final reference voltage. We are using a mirror transitor and a BJT as diode in the reference branch. By virtue of the mirror transistor in the reference branch the same amount of current flows through it as of the current mirror branches. Now from the PTAT circuit branch we are getting PTAT voltage and PTAT current. The same PTAT current is flowing in the reference branch. But the slope of PTAT voltage is much more smaller than that of slope of CTAT voltgae. In order to make increase the voltage slope we have to increase the resistance (current constant, so V increases with increase in R). Now across the high resistance we will get our constant reference voltage which is the result of CTAT Voltage + PTAT Voltage.
+
+
+
+<img width="137" height="386" alt="image" src="https://github.com/user-attachments/assets/19ccb3a5-54fc-4f5b-aa4f-916cae4e2019" />
 
 
 
