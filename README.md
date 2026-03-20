@@ -804,6 +804,7 @@ plot v(ra1)/vid#branch
 
 
 
+
 ## 2.2 Types Of BGR Circuit
 
 
