@@ -889,6 +889,26 @@ The start-up circuit is required to move out the self biased current mirror from
 
 
 
+  Advantages of SBCM BGR:
+  - Easy to design.
+  - Always stable.
+  - Simplest topology.
+
+
+
+Limitations of SBCM BGR:
+
+- Voltage head-room issue.
+- Cacode design needed to reduce PSRR.
+- Low power supply rejection ratio (PSRR).
+- Need start-up circuit
+
+
+
+
+
+
+
 
 
 
