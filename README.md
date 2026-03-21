@@ -887,7 +887,7 @@ The start-up circuit is required to move out the self biased current mirror from
   <img width="751" height="490" alt="image" src="https://github.com/user-attachments/assets/26885a62-a125-4ed0-8284-d58444dc5494" />
 
 
-
+-----------------------------
 
   Advantages of SBCM BGR:
   - Easy to design.
