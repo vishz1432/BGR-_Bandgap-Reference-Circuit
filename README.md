@@ -875,14 +875,14 @@ The start-up circuit is required to move out the self biased current mirror from
   <img width="521" height="434" alt="image" src="https://github.com/user-attachments/assets/c6ff982a-23a4-477c-90bb-254963ffbc64" />
 
 
-
+----------------------
   ***Now Finally the BGR  Circuit***
 
 
   ## Complete BGR Circuit
 
 
-
+Now by connecting all above components we can get the complete BGR circuit.
 
   <img width="751" height="490" alt="image" src="https://github.com/user-attachments/assets/26885a62-a125-4ed0-8284-d58444dc5494" />
 
