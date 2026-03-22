@@ -903,18 +903,50 @@ Limitations of SBCM BGR:
 
 
 
+# 3.  Design And Simulations:
+
+For the real-time circuit design we are going to use sky130 technology PDK. Before we design the complete circuit we must know what are our design requirements. The design requirements are the design guidelines which our design must satisfy.
 
 
+## 3.1 Design Requirements
+
+- Supply voltage = 1.8V
+- Temperature: -40 to 125 Deg Cent.
+- Power Consumption < 60uW
+- Off current < 2uA
+- Start-up time < 2us
+- Tempco. Of Vref < 50 ppm
 
 
+Now, we have to go through the device data sheet to find the appropriate devices for our design.
+
+After thoroughly going through the device data sheet we selected the following devices for our design.
+
+## 3.2 Device Data sheet 
+
+### 1. MOSFET
 
 
+ **Device Parameters (SKY130 LVT MOSFETs)**
+
+| Parameter | NFET | PFET |
+|----------|------|------|
+| Type | LVT | LVT |
+| Voltage | 1.8V | 1.8V |
+| Vt0 | ~0.4 V | ~-0.6 V |
+| Model | sky130_fd_pr__nfet_01v8_lvt | sky130_fd_pr__pfet_01v8_lvt |
 
 
+### 2. BJT
 
+**PNP Device Parameters (SKY130)**
 
-
-
+| Parameter | PNP |
+|----------|-------|
+| Current Rating | 1 µA – 10 µA/µm² |
+| Beta (β) | ~12 |
+| Emitter Area | 11.56 µm² |
+| Model | sky130_fd_pr__pnp_05v5_W3p40L3p40 |
 
 
 
