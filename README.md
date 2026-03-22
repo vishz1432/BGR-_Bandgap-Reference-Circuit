@@ -949,6 +949,272 @@ After thoroughly going through the device data sheet we selected the following d
 | Model | sky130_fd_pr__pnp_05v5_W3p40L3p40 |
 
 
+### Resistor Parameters (RPOLYH - SKY130)
+
+| Parameter | Value |
+|----------|-------|
+| Type | RPOLYH (High Poly Resistor) |
+| Sheet Resistance | ~350 Ω/□ |
+| Temperature Coefficient | ~2.5 Ω/°C |
+| Bin Widths | 0.35 µm, 0.69 µm, 1.41 µm, 5.37 µm |
+| Model | sky130_fd_pr__res_high_po |
+
+
+
+-----------------------
+## 3.3 Calculation and Circuit Design:
+
+### Design Calculations and Device Sizing
+
+### 1. Current Budget Estimation
+
+The maximum allowable power consumption is constrained as:
+
+$$
+P_{max} < 60 \, \mu W
+$$
+
+With a supply voltage:
+
+$$
+V_{DD} = 1.8 \, V
+$$
+
+The total current budget is:
+
+$$
+I_{total} = \frac{P_{max}}{V_{DD}} = \frac{60 \, \mu W}{1.8 \, V} \approx 33.33 \, \mu A
+$$
+
+To maintain margin, the design uses:
+
+- Branch current:  
+  
+  I \approx 10 \, \mu A
+  
+- Total (3 branches):  
+  
+  I_{total} \approx 30 \, \mu A
+  
+
+- Startup current:
+  
+  I_{startup} \approx 1 - 2 \, \mu A
+  
+
+---
+
+### 2. Selection of BJT Ratio (Emitter Area Ratio)
+
+The PTAT generator uses a BJT ratio of:
+
+$$
+N = 8
+$$
+
+#### Design Trade-offs:
+
+- **Small N**:
+  - Lower required resistance
+  - Poor matching
+
+- **Large N**:
+  - Better matching
+  - Larger resistor area required
+
+A moderate choice:
+
+$$
+N = 8
+$$
+
+ensures:
+
+- Good layout matching  
+- Reasonable resistor values  
+
+---
+
+### 3. Calculation of PTAT Resistor \(R_1\)
+
+The PTAT voltage is given by:
+
+$$
+\Delta V_{BE} = V_T \ln(N)
+$$
+
+where:
+
+$$
+V_T = \frac{kT}{q} \approx 26 \, mV \text{ at } 300K
+$$
+
+Thus:
+
+$$
+R_1 = \frac{\Delta V_{BE}}{I} = \frac{V_T \ln(N)}{I}
+$$
+
+Substituting values:
+
+$$
+R_1 = \frac{26 \, mV \cdot \ln(8)}{10.7 \, \mu A} \approx 5 \, k\Omega
+$$
+
+#### Layout Realization:
+
+- Unit resistor ≈ 2 kΩ  
+- Implementation:
+  - 2 resistors in series + 2 in parallel
+
+$$
+R_1 \approx 2k + (2k \parallel 2k)
+$$
+
+---
+
+### 4. Calculation of Compensation Resistor \(R_2\)
+
+The PTAT current is:
+
+$$
+I = \frac{V_T \ln(N)}{R_1}
+$$
+
+Voltage across \(R_2\):
+
+$$
+V_{R2} = I \cdot R_2 = \frac{R_2}{R_1} V_T \ln(N)
+$$
+
+#### Temperature Slope of PTAT Voltage:
+
+$$
+\frac{dV_{R2}}{dT} = \frac{R_2}{R_1} \cdot \ln(N) \cdot \frac{k}{q}
+$$
+
+where:
+
+$$
+\frac{k}{q} \approx 85 \, \mu V/^\circ C
+$$
+
+#### CTAT Slope:
+
+$$
+\frac{dV_{BE}}{dT} \approx -1.6 \, mV/^\circ C
+$$
+
+For temperature independence:
+
+$$
+\frac{dV_{REF}}{dT} = 0
+$$
+
+So,
+
+$$
+\frac{R_2}{R_1} \cdot \ln(N) \cdot 85 \, \mu V \approx 1.6 \, mV
+$$
+
+Solving:
+
+$$
+R_2 \approx 33 \, k\Omega
+$$
+
+#### Layout Realization:
+
+- Implemented using multiple unit resistors  
+- Configuration:
+  - Series chain + parallel trimming
+
+---
+
+### 5. Self-Biased Current Mirror (SBCM) Design
+
+#### A. PMOS Design
+
+Design requirements:
+
+- Operate in **saturation region**
+- Minimize channel length modulation
+
+Condition:
+
+$$
+V_{SD} > V_{SG} - |V_{TH}|
+$$
+
+Chosen parameters:
+
+- \(L = 2 \, \mu m\) (reduces \(\lambda\))  
+- \(W = 5 \, \mu m\)  
+- Multiplicity \(M = 4\)
+
+---
+
+#### B. NMOS Design
+
+Design goal:
+
+- Operate in **deep sub-threshold region**
+
+Subthreshold current:
+
+$$
+I_D \propto e^{\frac{V_{GS}}{nV_T}}
+$$
+
+Advantages:
+
+- Better exponential behavior  
+- Improved PTAT generation  
+
+Chosen parameters:
+
+- \(L = 1 \, \mu m\)  
+- \(W = 5 \, \mu m\)  
+- Multiplicity \(M = 8\)
+
+---
+
+### Final Design Summary
+
+- Total current ≈ **30 µA**
+- PTAT generated using **BJT ratio (N = 8)**
+- Temperature compensation via **R2 tuning**
+- Biasing achieved using **self-biased current mirror**
+- Designed for **low power and good matching**
+
+---
+
+### 3.3.1
+
+<img width="936" height="624" alt="image" src="https://github.com/user-attachments/assets/19dfc11a-82b5-4ae8-b4d3-f46cbc023f2c" />
+
+
+## 3.4 Writing Spice netlist and Pre-layout simulation
+
+- To write a valid netlist we must include the library file (with absolute path) and mention the cornmer name (tt, ff or ss).
+
+
+
+### 3.4.1 BGR with SBCM
+
+Now we will replace the ideal Op-Amp with self-biased current mirror which is our proposed design. We expect same type of output as in case of ideal OpAmp based BGR. We will also check for different corners, and will see how our circuit is performing in different corners.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
