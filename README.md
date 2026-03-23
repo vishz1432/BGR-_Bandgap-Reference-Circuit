@@ -1247,7 +1247,9 @@ Tempco. Of Vref = ~45 PPM
 
 
 
+# 4. Layout Design
 
+Now after getting our final netlist, we have to design the layout for our BGR. Layout is drawning the masks used in fabrication. We are going to use the Magic VLSI tool for our layout design.
 
 
 
