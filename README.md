@@ -1202,11 +1202,32 @@ Chosen parameters:
 
 ### 3.4.1 BGR with SBCM
 
-Now we will replace the ideal Op-Amp with self-biased current mirror which is our proposed design. We expect same type of output as in case of ideal OpAmp based BGR. We will also check for different corners, and will see how our circuit is performing in different corners.
+  Now We will Design the Circuits and verify by using the outputs.
+
+- Behaviour in TT Corner:
+
+  <img width="839" height="564" alt="image" src="https://github.com/user-attachments/assets/71c7c8ff-54fe-493a-82d3-e4986989e016" />
+
+
+Tempco. Of Vref = ~21.7 PPM.
+
+
+- Behaviour in FF Corner:
+
+<img width="853" height="564" alt="image" src="https://github.com/user-attachments/assets/eccb9193-8c79-4eba-985f-fcc62eb322f6" />
 
 
 
+Tempco. Of Vref = ~10 PPM.
 
+
+- Behaviour in SS corner:
+
+
+<img width="852" height="564" alt="image" src="https://github.com/user-attachments/assets/1ac787b5-6b7f-4b6c-ac9e-8716fff1156b" />
+
+
+Tempco. Of Vref = ~45 PPM
 
 
 
