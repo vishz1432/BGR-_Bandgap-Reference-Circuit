@@ -1235,7 +1235,11 @@ Tempco. Of Vref = ~45 PPM
 ### 3.4.2 BGR using Ideal OpAmp
 
 - Now after simulating all our components, let's quick check our BGR behaviour using one VCVS as an ideal OpAmp.
-   - - In this simulation we should get the reference voltgae as an umbrella shaped curve and it should be ~1.2V.
+    - - In this simulation we should get the reference voltgae as an umbrella shaped curve and it should be ~1.2V.
+
+ 
+ [Netlist For BGR_Opamp](https://github.com/vishz1432/BGR-_Bandgap-Reference-Circuit/blob/main/BGR/bgr_idealopam.sp)
+ 
 
 
 
